@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "novaface"
+version = "0.1.0"
+description = "Clean-slate high-performance real-time face swap & live camera engine with Apple Silicon CoreML acceleration"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Tiggy-Chan", email = "tiggychan233@gmail.com" }
+]
+keywords = [
+    "deepfake",
+    "face-swap",
+    "real-time",
+    "coreml",
+    "apple-silicon",
+    "computer-vision",
+    "onnxruntime",
+    "neural-engine"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Multimedia :: Video :: Display"
+]
+dependencies = [
+    "numpy>=1.24.0",
+    "opencv-python>=4.8.0",
+    "onnxruntime>=1.18.0",
+    "insightface>=0.7.3",
+    "tqdm>=4.65.0",
+    "pillow>=9.5.0",
+    "typing-extensions>=4.8.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0"
+]
+
+[project.scripts]
+novaface = "novaface.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
