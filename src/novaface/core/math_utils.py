@@ -22,14 +22,14 @@ CANONICAL_FACE_5PTS_112 = np.array(
 )
 
 # Standard canonical 5-point facial reference coordinates for 128x128 space
-# (scaled and centered for 128x128 models such as Inswapper):
+# (ArcFace template with +8.0px horizontal centering offset):
 CANONICAL_FACE_5PTS_128 = np.array(
     [
-        [43.765257, 59.081486],
-        [84.036343, 58.858743],
-        [64.028800, 81.984686],
-        [47.484914, 105.560571],
-        [80.834171, 105.376114],
+        [46.2946, 51.6963],
+        [81.5318, 51.5014],
+        [64.0252, 71.7366],
+        [49.5493, 92.3655],
+        [78.7299, 92.2041],
     ],
     dtype=np.float32,
 )

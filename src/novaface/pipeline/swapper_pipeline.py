@@ -28,7 +28,7 @@ class PipelineConfig:
 
     detector_score_threshold: float = 0.5
     nms_threshold: float = 0.4
-    enable_color_transfer: bool = True
+    enable_color_transfer: bool = False
     color_blend_ratio: float = 0.85
     temporal_smoothing: bool = True
     target_face_index: int = 0  # 0: largest face, -1: all faces
