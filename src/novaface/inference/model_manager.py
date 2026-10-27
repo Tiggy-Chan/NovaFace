@@ -21,9 +21,9 @@ class ModelPaths:
 class ModelManager:
     """Locates and manages local neural weights and checkpoints."""
 
-    DEFAULT_DETECTOR_NAMES = ["det_10g.onnx", "det_10g_coreml_1x3x640x640.onnx", "scrfd_10g_bnkps.onnx"]
+    DEFAULT_DETECTOR_NAMES = ["det_10g_coreml_1x3x640x640.onnx", "det_10g.onnx", "scrfd_10g_bnkps.onnx"]
     DEFAULT_EMBEDDER_NAMES = ["w600k_r50.onnx", "arcface_r50.onnx", "glintr100.onnx"]
-    DEFAULT_SWAPPER_NAMES = ["inswapper_128_fp16.onnx", "inswapper_128.onnx", "inswapper_128_fp16_coreml.onnx"]
+    DEFAULT_SWAPPER_NAMES = ["inswapper_128_fp16_coreml.onnx", "inswapper_128_fp16.onnx", "inswapper_128.onnx"]
 
     # Candidate search paths in priority order
     SEARCH_DIRS = [

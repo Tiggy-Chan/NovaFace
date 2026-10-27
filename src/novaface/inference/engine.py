@@ -64,7 +64,14 @@ class OnnxSession:
 
         # macOS: Prioritize CoreML for Apple Silicon Neural Engine / GPU
         if platform.system() == "Darwin" and "CoreMLExecutionProvider" in available:
-            selected.append("CoreMLExecutionProvider")
+            coreml_options = {
+                "ModelFormat": "MLProgram",
+                "MLComputeUnits": "ALL",
+                "SpecializationStrategy": "FastPrediction",
+                "AllowLowPrecisionAccumulationOnGPU": "1",
+                "EnableOnSubgraphs": "1",
+            }
+            selected.append(("CoreMLExecutionProvider", coreml_options))
 
         # Linux/Windows: Prioritize CUDA / TensorRT
         if "CUDAExecutionProvider" in available:
