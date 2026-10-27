@@ -212,7 +212,7 @@ def build_parser() -> argparse.ArgumentParser:
     # live
     p_live = subparsers.add_parser("live", help="Real-time live webcam face swapping studio")
     p_live.add_argument("--source", "-s", required=True, help="Path to source identity image")
-    p_live.add_argument("--camera", "-c", type=int, default=0, help="Webcam device ID (default: 0)")
+    p_live.add_argument("--camera", "-c", default="0", help="Webcam device ID (0, 1) or stream URL (default: 0)")
     p_live.add_argument("--width", type=int, default=1280, help="Camera width resolution")
     p_live.add_argument("--height", type=int, default=720, help="Camera height resolution")
     p_live.add_argument("--fps", type=int, default=30, help="Target capture FPS")

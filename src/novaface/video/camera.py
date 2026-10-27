@@ -9,16 +9,16 @@ import queue
 import threading
 import time
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union
 import cv2
 import numpy as np
 
 
 @dataclass
 class CameraConfig:
-    """Hardware webcam capture parameters."""
+    """Hardware webcam or stream capture parameters."""
 
-    device_id: int = 0
+    device_id: Union[int, str] = 0
     width: int = 1280
     height: int = 720
     fps: int = 30
@@ -36,15 +36,19 @@ class AsyncCameraCapture:
         """
         self.config = config or CameraConfig()
 
-        # Select backend: AVFoundation on macOS for lowest latency
-        backend = self.config.backend
-        if backend is None and platform.system() == "Darwin":
-            backend = cv2.CAP_AVFOUNDATION
+        dev = self.config.device_id
+        if isinstance(dev, str) and dev.isdigit():
+            dev = int(dev)
 
-        if backend is not None:
-            self.cap = cv2.VideoCapture(self.config.device_id, backend)
+        # Select backend: AVFoundation on macOS for local hardware
+        backend = self.config.backend
+        if isinstance(dev, int):
+            if backend is None and platform.system() == "Darwin":
+                backend = cv2.CAP_AVFOUNDATION
+            self.cap = cv2.VideoCapture(dev, backend) if backend is not None else cv2.VideoCapture(dev)
         else:
-            self.cap = cv2.VideoCapture(self.config.device_id)
+            # URL / Stream (e.g. RTSP or HTTP IP camera)
+            self.cap = cv2.VideoCapture(str(dev))
 
         # Set capture properties
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.config.width)
